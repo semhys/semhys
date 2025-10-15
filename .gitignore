@@ -5,3 +5,4 @@
 *.log
 *.zip
 includes/config.php
+.diag_token
