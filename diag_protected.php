@@ -1,8 +1,26 @@
 <?php
+// diag_protected.php - DISABLED
+// This endpoint has been intentionally disabled for security.
+// See diag_DISABLED_README.txt for restoration instructions.
+
+http_response_code(404);
+header('Content-Type: application/json');
+echo json_encode(['ok' => false, 'error' => 'Diagnostic endpoint disabled', 'info' => 'See diag_DISABLED_README.txt']);
+exit;
+
+// diag_protected.php - herramienta de diagnóstico protegida por token
+// Uso: diag_protected.php?token=TU_TOKEN&action=info|write|send
+<?php
 // diag_protected.php - herramienta de diagnóstico protegida por token
 // Uso: diag_protected.php?token=TU_TOKEN&action=info|write|send
 
-require_once __DIR__ . '/includes/config.php';
+// Prefer a config file placed outside the webroot (one level up). Fall back to includes/config.php for local dev.
+$external_config = realpath(__DIR__ . '/../config.php');
+if ($external_config && is_readable($external_config)) {
+    require_once $external_config;
+} else {
+    require_once __DIR__ . '/includes/config.php';
+}
 require_once __DIR__ . '/phpmailer/src/PHPMailer.php';
 require_once __DIR__ . '/phpmailer/src/SMTP.php';
 require_once __DIR__ . '/phpmailer/src/Exception.php';

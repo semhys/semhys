@@ -1,6 +1,13 @@
 <?php
-// test_db.php - prueba de conexión a la DB usando includes/config.php
-require_once __DIR__ . '/includes/config.php';
+<?php
+// test_db.php - DISABLED
+// This endpoint has been intentionally disabled for security.
+// See diag_DISABLED_README.txt for restoration instructions.
+
+http_response_code(404);
+header('Content-Type: application/json');
+echo json_encode(['ok' => false, 'error' => 'Disabled']);
+exit;
 
 header('Content-Type: application/json');
 $out = ['ok' => false, 'error' => null];

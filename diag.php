@@ -20,7 +20,15 @@ echo "<div style='max-width:980px;margin:24px auto;font-family:system-ui,Segoe U
 echo "<h1>Diagnóstico SEMHYS</h1>";
 
 /* ==========  AJUSTA AQUÍ (según tu instalación)  ================== */
-require_once __DIR__ . '/includes/config.php';
+<?php
+// diag.php - DISABLED
+// This endpoint has been intentionally disabled for security.
+// See diag_DISABLED_README.txt for restoration instructions.
+
+http_response_code(404);
+header('Content-Type: application/json');
+echo json_encode(['ok' => false, 'error' => 'Disabled']);
+exit;
 const LEADS_TABLE = 'leads_semhys';
 /* ================================================================== */
 

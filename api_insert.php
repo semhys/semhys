@@ -4,7 +4,13 @@ error_reporting(E_ALL);
 ini_set('display_errors','1');
 header('Content-Type: application/json; charset=utf-8');
 
-require_once __DIR__ . '/includes/config.php';
+// Prefer a config file placed outside the webroot (one level up). Fall back to includes/config.php for local dev.
+$external_config = realpath(__DIR__ . '/../config.php');
+if ($external_config && is_readable($external_config)) {
+  require_once $external_config;
+} else {
+  require_once __DIR__ . '/includes/config.php';
+}
 
 function respond(array $a, int $code=200){ if($code!==200) http_response_code($code); echo json_encode($a, JSON_UNESCAPED_UNICODE); exit; }
 function logit(string $msg): void {

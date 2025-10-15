@@ -1,0 +1,10 @@
+-- SQL to create leads_semhys table
+CREATE TABLE IF NOT EXISTS `leads_semhys` (
+  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `name` VARCHAR(200) DEFAULT NULL,
+  `email` VARCHAR(200) DEFAULT NULL,
+  `location` VARCHAR(200) DEFAULT NULL,
+  `message` TEXT DEFAULT NULL,
+  INDEX (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

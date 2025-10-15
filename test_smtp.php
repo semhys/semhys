@@ -1,6 +1,13 @@
 <?php
-// test_smtp.php - prueba de envío SMTP (usa includes/config.php y PHPMailer)
-require_once __DIR__ . '/includes/config.php';
+<?php
+// test_smtp.php - DISABLED
+// This endpoint has been intentionally disabled for security.
+// See diag_DISABLED_README.txt for restoration instructions.
+
+http_response_code(404);
+header('Content-Type: application/json');
+echo json_encode(['ok' => false, 'error' => 'Disabled']);
+exit;
 require_once __DIR__ . '/phpmailer/src/PHPMailer.php';
 require_once __DIR__ . '/phpmailer/src/SMTP.php';
 require_once __DIR__ . '/phpmailer/src/Exception.php';
