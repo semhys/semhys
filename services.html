@@ -1,0 +1,113 @@
+<!doctype html><html lang="es"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Servicios | SEMHYS</title>
+<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<meta property="og:image" content="assets/img/logo.svg" />
+<meta name="twitter:image" content="assets/img/logo.svg" />
+<meta itemprop="image" content="assets/img/logo.svg" />
+<meta name="author" content="SEMHYS" />
+<meta name="organization" content="SEMHYS" />
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "SEMHYS",
+    "url": "https://semhys.com/",
+    "logo": "assets/img/logo.svg"
+  }
+  </script>
+</head><body>
+  <header class="site-header">
+    <div class="container header-grid" style="backdrop-filter: blur(12px) saturate(160%); background: var(--surface,rgba(16,20,27,0.85)); border-radius: 18px; box-shadow: 0 4px 32px #0002; margin-top: 18px;">
+      <a href="index.html#home" class="brand" aria-label="SEMHYS" style="display:flex;align-items:center;gap:10px;">
+        <img src="assets/img/logo.svg" alt="Logo SEMHYS: ingeniería sostenible, agua y energía" title="SEMHYS Ingeniería Sostenible" style="width:48px;height:48px;border-radius:50%;background:#fff;box-shadow:0 2px 8px #0003;object-fit:cover;" itemprop="logo"/>
+        <span class="brand-text" style="font-size:1.5em;font-weight:900;letter-spacing:1px;background:linear-gradient(90deg,var(--accent),var(--primary) 80%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;">SEMHYS</span>
+      </a>
+      <nav class="nav" id="mainNav" style="flex:1;display:flex;justify-content:center;align-items:center;">
+        <ul class="nav-list" style="display:flex;gap:2.2em;list-style:none;margin:0;padding:0;align-items:center;">
+          <li><a href="index.html" class="nav-link">Inicio</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="services.html" class="nav-link">Servicios</a></li>
+          <li><a href="blog.html" class="nav-link">Blog</a></li>
+          <li><a href="shop.html" class="nav-link">Tienda</a></li>
+          <li><a href="academy.html" class="nav-link">Academia</a></li>
+          <li><a href="contact.html" class="btn btn-primary" style="padding:10px 22px;font-size:1em;">Contacto</a></li>
+        </ul>
+      </nav>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:12px;">
+        <select id="langSelect" style="padding:0.3em 1em;border-radius:8px;font-size:1em;background:var(--surface);color:var(--text);border:1px solid #273246;box-shadow:0 2px 8px #0002;">
+          <option value="es">Español</option>
+          <option value="en">English</option>
+          <option value="pt">Português</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+        </select>
+        <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" style="display:none;background:none;border:0;cursor:pointer;padding:8px;">
+          <span style="display:block;width:28px;height:3px;background:var(--text);margin:6px 0;border-radius:2px;"></span>
+          <span style="display:block;width:28px;height:3px;background:var(--text);margin:6px 0;border-radius:2px;"></span>
+          <span style="display:block;width:28px;height:3px;background:var(--text);margin:6px 0;border-radius:2px;"></span>
+        </button>
+      </div>
+    </div>
+    <style>
+      .nav-link {
+        position:relative;
+        color:var(--text);
+        text-decoration:none;
+        font-weight:600;
+        font-size:1.08em;
+        padding:6px 0;
+        transition:color .2s;
+      }
+      .nav-link::after {
+        content:'';
+        display:block;
+        height:3px;
+        border-radius:2px;
+        width:0;
+        background:linear-gradient(90deg,var(--accent),var(--primary) 80%);
+        transition:width .3s;
+        margin-top:2px;
+      }
+      .nav-link:hover::after, .nav-link.active::after {
+        width:100%;
+      }
+      @media (max-width:900px) {
+        .nav-list { flex-direction:column;gap:1.2em;background:var(--surface);position:absolute;top:70px;right:18px;padding:22px 28px;border-radius:16px;box-shadow:0 8px 32px #0006;display:none;z-index:99; }
+        .nav-list.open { display:flex; }
+        .nav-toggle { display:block!important; }
+        .site-header .container { flex-direction:row; }
+      }
+    </style>
+    <script>
+      document.addEventListener('DOMContentLoaded',()=>{
+        const navToggle = document.getElementById('navToggle');
+        const navList = document.querySelector('.nav-list');
+        navToggle && navToggle.addEventListener('click',()=>{
+          navList.classList.toggle('open');
+        });
+        // Cerrar menú al hacer click en un enlace (móvil)
+        navList && navList.querySelectorAll('a').forEach(a=>{
+          a.addEventListener('click',()=>{
+            navList.classList.remove('open');
+          });
+        });
+      });
+    </script>
+  </header>
+
+<section class="section"><div class="container">
+<h2>Portafolio</h2><p class="sub">Ingeniería integral con cumplimiento normativo y QA/QC.</p>
+<div class="grid-3">
+  <div class="card"><h3>Hidráulica</h3><ul><li>Modelación de redes</li><li>Estaciones de bombeo</li><li>Tratamiento de agua (PTAR/PTAP)</li></ul></div>
+  <div class="card"><h3>Eléctrica</h3><ul><li>BT/MT & protecciones</li><li>Tableros y CCM</li><li>Eficiencia energética</li></ul></div>
+  <div class="card"><h3>Automatización</h3><ul><li>PLC/SCADA/IIoT</li><li>Telemetría y control</li><li>Alarmas y reporting</li></ul></div>
+</div>
+</div></section>
+
+<footer class="footer"><div class="container">© <span id="year"></span> SEMHYS</div></footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="/assets/js/chat.js" defer></script>
+</body></html>

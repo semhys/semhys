@@ -1,0 +1,22 @@
+name: Deploy to Hostinger via SFTP
+
+on:
+  push:
+    branches: [ main, master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sync to remote via SFTP
+        uses: burnett01/rsync-deployments@v4
+        with:
+          switches: '-avz --delete'
+          path: '.'
+          remote_path: '${{ secrets.REMOTE_PATH }}'
+          remote_host: '${{ secrets.HOSTINGER_HOST }}'
+          remote_user: '${{ secrets.HOSTINGER_USER }}'
+          remote_port: '${{ secrets.HOSTINGER_PORT }}'
+          remote_key: ''
+          args: ''

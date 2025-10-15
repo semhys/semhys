@@ -1,0 +1,7 @@
+/.env
+/.env.local
+/vendor/
+/node_modules/
+*.log
+*.zip
+includes/config.php

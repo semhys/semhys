@@ -1,0 +1,51 @@
+# Prefer index.html over default.php (Hostinger default page)
+DirectoryIndex index.html index.htm index.php default.php
+
+# Prevent directory listing
+Options -Indexes
+
+# Basic protection for sensitive folders
+<IfModule mod_authz_core.c>
+  <Directory "/">
+    Require all granted
+  </Directory>
+</IfModule>
+
+# Deny access to php files inside phpmailer and usuarios (keep library private)
+<FilesMatch "^(phpmailer|usuarios)/.*\.php$">
+  Require all denied
+</FilesMatch>
+
+# If Apache < 2.4 compatibility
+<IfModule !mod_authz_core.c>
+  <FilesMatch "^(phpmailer|usuarios)/.*\.php$">
+    Order allow,deny
+    Deny from all
+  </FilesMatch>
+</IfModule>
+
+# Disable ETag for slightly smaller responses
+FileETag None
+# ===========================================================
+# Configuración principal de SEMHYS - Redirección con www
+# ===========================================================
+
+RewriteEngine On
+
+# Fuerza HTTPS
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Redirige sin www a www
+RewriteCond %{HTTP_HOST} ^semhys\.com$ [NC]
+RewriteRule ^(.*)$ https://www.semhys.com/$1 [L,R=301]
+
+<FilesMatch "\.(php)$">
+    SetHandler application/x-httpd-php
+</FilesMatch>
+
+<FilesMatch "(^\.|config|composer\.json|phpmailer)">
+    Require all denied
+</FilesMatch>
+
+AddDefaultCharset UTF-8

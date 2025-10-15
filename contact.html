@@ -1,0 +1,144 @@
+<!doctype html><html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contacto | SEMHYS</title>
+<link rel="stylesheet" href="/assets/css/styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<style>
+body { background: #101114; color: #f5f6fa; font-family: 'Inter', sans-serif; }
+.section__head h2, h2 { font-size: 2em; font-weight: 700; margin-bottom: 0.2em; }
+.section__head p, .sub { color: #00bcd4; font-size: 1.1em; }
+.footer { background: #101114; color: #aaa; padding: 2em 0 1em; }
+.footer a { color: #00bcd4; margin-right: 1.5em; text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+.nav-links a { margin-right: 1.5em; font-size: 1.1em; letter-spacing: 0.02em; }
+.nav-links a:last-child { margin-right: 0; }
+@media (max-width: 900px) { .grid-3 { grid-template-columns: 1fr; } }
+</style>
+</head><body>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.section').forEach(el=>{
+    el.classList.add('animate__animated','animate__fadeInUp');
+  });
+});
+</script>
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="/index.html" class="brand"><span class="logo"></span><span>SEMHYS</span></a>
+    <div class="nav-links">
+      <a href="/about.html">About</a>
+      <a href="/services.html">Servicios</a>
+      <a href="/blog.html">Blog</a>
+      <a href="/shop.html">Tienda</a>
+      <a href="/academy.html">Academia</a>
+      <a href="/contact.html" class="btn">Contacto</a>
+    </div>
+  </div>
+</nav>
+
+<section class="section"><div class="container">
+<h2>Contáctanos</h2><p class="sub">Te responderemos a la brevedad.</p>
+<form id="f">
+  <label for="nombre">Nombre</label>
+  <input type="text" id="nombre" name="nombre" required>
+  <label for="correo">Correo</label>
+  <input type="email" id="correo" name="correo" required>
+  <label for="ciudad">Ciudad/Estado</label>
+  <input type="text" id="ciudad" name="ciudad">
+  <label for="mensaje">Mensaje</label>
+  <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+  <button type="submit" class="btn">Enviar</button>
+  <div id="formStatus" style="margin-top:1em;"></div>
+</form>
+</div></section>
+
+<footer class="footer"><div class="container">© <span id="year"></span> SEMHYS</div></footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="/assets/js/chat.js" defer></script>
+<script>
+const N8N_WEBHOOK_URL = 'https://TU_SUBDOMINIO.app.n8n.cloud/webhook/REEMPLAZA_ESTO'; // Cambia por tu URL real
+document.getElementById('f').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const status = document.getElementById('formStatus');
+  status.textContent = 'Enviando...';
+  const data = {
+    nombre: this.nombre.value,
+    correo: this.correo.value,
+    ciudad: this.ciudad.value,
+    mensaje: this.mensaje.value
+  };
+  try {
+    const res = await fetch(N8N_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    if (res.ok) {
+      status.textContent = '¡Mensaje enviado! Pronto te contactaremos.';
+      this.reset();
+    } else {
+      status.textContent = 'Error al enviar. Intenta de nuevo.';
+    }
+  } catch {
+    status.textContent = 'Error de conexión. Intenta más tarde.';
+  }
+});
+</script>
+<style>
+#f {
+  max-width: 420px;
+  margin: 2em auto;
+  padding: 2em;
+  background: #18191a;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px #0002;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+#f label {
+  font-weight: 600;
+  margin-bottom: 0.2em;
+}
+#f input,
+#f textarea {
+  padding: 0.7em;
+  border: 1px solid #333;
+  border-radius: 6px;
+  background: #222;
+  color: #fff;
+  font-size: 1em;
+}
+#f input:focus,
+#f textarea:focus {
+  outline: 2px solid #00bcd4;
+  border-color: #00bcd4;
+}
+#f .btn {
+  background: #00bcd4;
+  color: #fff;
+  border: none;
+  padding: 0.8em 1.5em;
+  border-radius: 6px;
+  font-size: 1.1em;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+#f .btn:hover {
+  background: #0097a7;
+}
+#formStatus {
+  min-height: 1.5em;
+  color: #00bcd4;
+  font-weight: 600;
+  text-align: center;
+}
+@media (max-width: 600px) {
+  #f {
+    padding: 1em;
+    max-width: 98vw;
+  }
+}
+</style>
+</body></html>

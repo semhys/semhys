@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SEMHYS • Soluciones de Ingeniería</title>
+  <meta property="og:image" content="assets/img/logo.svg" />
+  <meta name="twitter:image" content="assets/img/logo.svg" />
+  <meta itemprop="image" content="assets/img/logo.svg" />
+  <meta name="author" content="SEMHYS" />
+  <meta name="organization" content="SEMHYS" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "SEMHYS",
+    "url": "https://semhys.com/",
+    "logo": "assets/img/logo.svg"
+  }
+  </script>
+  <meta name="description" content="Proyectos hidráulicos, eléctricos y electromecánicos con estándares internacionales, sostenibilidad y automatización inteligente.">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <script defer src="assets/js/main.js"></script>
+  <style>
+  .nav-links a { margin-right: 1.5em; font-size: 1.1em; letter-spacing: 0.02em; }
+  .nav-links a:last-child { margin-right: 0; }
+    body { background: #101114; color: #f5f6fa; font-family: 'Inter', sans-serif; }
+    .hero { min-height: 70vh; display: flex; align-items: center; background: linear-gradient(120deg,#00bcd4 0,#18191a 100%); color: #fff; }
+    .hero_copy h1 { font-size: 2.8em; font-weight: 800; margin-bottom: 0.3em; animation: fadeInDown 1s; }
+    .hero_copy p { font-size: 1.3em; margin-bottom: 1.2em; animation: fadeIn 1.5s; }
+    .hero_cta .btn { margin-right: 1em; margin-bottom: 0.5em; }
+    .hero_badges span { background: #fff2; color: #fff; border-radius: 1em; padding: 0.3em 1em; margin-right: 0.5em; font-size: 0.95em; }
+    .mockup-card { background: #fff1; border-radius: 1.5em; padding: 2em; box-shadow: 0 8px 32px #0003; margin-left: 2em; animation: fadeInRight 1.2s; }
+    .stats div { font-size: 1.1em; margin-bottom: 0.7em; }
+    .section__head h2 { font-size: 2em; font-weight: 700; margin-bottom: 0.2em; }
+    .section__head p { color: #00bcd4; font-size: 1.1em; }
+    .card { background: #18191a; border-radius: 1em; box-shadow: 0 2px 12px #0002; padding: 1.5em; margin: 1em 0; transition: transform 0.2s, box-shadow 0.2s; }
+    .card:hover { transform: translateY(-6px) scale(1.03); box-shadow: 0 8px 32px #00bcd4aa; }
+    .cta__box { background: #00bcd4; color: #fff; border-radius: 1em; padding: 2em; text-align: center; margin: 2em 0; box-shadow: 0 2px 16px #00bcd488; }
+    .cta__box .btn { background: #fff; color: #00bcd4; font-weight: 700; }
+    .section.dark { background: #18191a; }
+    .site-footer { background: #101114; color: #aaa; padding: 2em 0 1em; }
+    .footer_grid { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; }
+    .brand--footer { font-size: 1.3em; font-weight: 700; margin-bottom: 0.5em; }
+    .footer_grid a { color: #00bcd4; margin-right: 1em; text-decoration: none; }
+    .footer_grid a:hover { text-decoration: underline; }
+    .chat-bubble { position: fixed; bottom: 2em; left: 2em; background: #00bcd4; color: #fff; border: none; border-radius: 50%; width: 56px; height: 56px; font-size: 2em; box-shadow: 0 2px 16px #00bcd488; cursor: pointer; z-index: 1000; transition: background 0.2s; }
+    .chat-bubble:hover { background: #0097a7; }
+    .chat-panel { position: fixed; bottom: 80px; left: 2em; width: 340px; max-width: 95vw; background: #222; color: #fff; border-radius: 1em; box-shadow: 0 8px 32px #0008; display: none; flex-direction: column; z-index: 1001; }
+    .chat-panel[aria-hidden="false"] { display: flex; animation: fadeInUp 0.5s; }
+    .chat_head { padding: 1em; border-bottom: 1px solid #333; display: flex; justify-content: space-between; align-items: center; }
+    .chat_body { padding: 1em; min-height: 80px; max-height: 220px; overflow-y: auto; }
+    .chat_input { display: flex; border-top: 1px solid #333; }
+    .chat_input input { flex: 1; padding: 0.7em; border: none; border-radius: 0 0 0 1em; background: #18191a; color: #fff; }
+    .chat_input button { background: #00bcd4; color: #fff; border: none; border-radius: 0 0 1em 0; padding: 0 1.2em; font-weight: 700; cursor: pointer; }
+    @media (max-width: 900px) { .footer_grid { flex-direction: column; gap: 2em; } .mockup-card { margin-left: 0; margin-top: 2em; } }
+    @media (max-width: 600px) { .hero_copy h1 { font-size: 2em; } .mockup-card { padding: 1em; } }
+  </style>
+</head>
+
+<body>
+    <!-- Header / Navbar -->
+  <!-- Scripts de traducción y animación -->
+  <script>
+    // Traducciones básicas (puedes expandir)
+    const translations = {
+      es: {
+        hero_title: 'Soluciones de Ingeniería Sostenible',
+        hero_desc: 'Diseño, automatización y ejecución de proyectos hidráulicos, eléctricos y mecánicos con estándares internacionales y enfoque en eficiencia energética.',
+        btn_services: 'Ver servicios',
+        btn_quote: 'Solicitar cotización',
+        services: 'Nuestros servicios',
+        services_desc: 'Ingeniería • Hidráulica • Eléctrica • Automatización • Consultoría • EPC • Mantenimiento',
+        cases: 'Casos recientes',
+        cases_desc: 'Resultados medibles con impacto ambiental positivo.'
+      },
+      en: {
+        hero_title: 'Sustainable Engineering Solutions',
+        hero_desc: 'Design, automation, and execution of hydraulic, electrical, and mechanical projects with international standards and energy efficiency focus.',
+        btn_services: 'See services',
+        btn_quote: 'Request a quote',
+        services: 'Our Services',
+        services_desc: 'Engineering • Hydraulics • Electrical • Automation • Consulting • EPC • Maintenance',
+        cases: 'Recent Cases',
+        cases_desc: 'Measurable results with positive environmental impact.'
+      },
+      pt: {
+        hero_title: 'Soluções de Engenharia Sustentável',
+        hero_desc: 'Projeto, automação e execução de projetos hidráulicos, elétricos e mecânicos com padrões internacionais e foco em eficiência energética.',
+        btn_services: 'Ver serviços',
+        btn_quote: 'Solicitar orçamento',
+        services: 'Nossos Serviços',
+        services_desc: 'Engenharia • Hidráulica • Elétrica • Automação • Consultoria • EPC • Manutenção',
+        cases: 'Casos recentes',
+        cases_desc: 'Resultados mensuráveis com impacto ambiental positivo.'
+      },
+      fr: {
+        hero_title: 'Solutions d’ingénierie durable',
+        hero_desc: 'Conception, automatisation et exécution de projets hydrauliques, électriques et mécaniques selon les normes internationales et l’efficacité énergétique.',
+        btn_services: 'Voir les services',
+        btn_quote: 'Demander un devis',
+        services: 'Nos Services',
+        services_desc: 'Ingénierie • Hydraulique • Électrique • Automatisation • Conseil • EPC • Maintenance',
+        cases: 'Cas récents',
+        cases_desc: 'Résultats mesurables avec un impact environnemental positif.'
+      },
+      de: {
+        hero_title: 'Nachhaltige Ingenieurlösungen',
+        hero_desc: 'Planung, Automatisierung und Ausführung von hydraulischen, elektrischen und mechanischen Projekten nach internationalen Standards und mit Fokus auf Energieeffizienz.',
+        btn_services: 'Dienstleistungen ansehen',
+        btn_quote: 'Angebot anfordern',
+        services: 'Unsere Dienstleistungen',
+        services_desc: 'Ingenieurwesen • Hydraulik • Elektrik • Automatisierung • Beratung • EPC • Wartung',
+        cases: 'Aktuelle Projekte',
+        cases_desc: 'Messbare Ergebnisse mit positivem Umwelteinfluss.'
+      }
+    };
+    function setLang(lang) {
+      const t = translations[lang] || translations['es'];
+      document.getElementById('hero_title').textContent = t.hero_title;
+      document.getElementById('hero_desc').textContent = t.hero_desc;
+      document.getElementById('btn_services').textContent = t.btn_services;
+      document.getElementById('btn_quote').textContent = t.btn_quote;
+      document.getElementById('services_title').textContent = t.services;
+      document.getElementById('services_desc').textContent = t.services_desc;
+      document.getElementById('cases_title').textContent = t.cases;
+      document.getElementById('cases_desc').textContent = t.cases_desc;
+    }
+    document.addEventListener('DOMContentLoaded',()=>{
+      const sel = document.getElementById('langSelect');
+      sel.addEventListener('change', e => setLang(e.target.value));
+      setLang(sel.value);
+      // Animación de aparición para secciones
+      document.querySelectorAll('.section, .hero').forEach(el=>{
+        el.classList.add('animate__animated','animate__fadeInUp');
+      });
+      // Chat bubble toggle
+      const bubble=document.getElementById('chatBubble'),panel=document.getElementById('chatPanel'),close=document.getElementById('chatClose');
+      if(bubble && panel && close){
+        bubble.onclick=()=>{panel.setAttribute('aria-hidden','false');};
+        close.onclick=()=>{panel.setAttribute('aria-hidden','true');};
+      }
+    });
+  </script>
+  <header class="site-header">
+    <div class="container header-grid" style="backdrop-filter: blur(12px) saturate(160%); background: rgba(16,20,27,0.85); border-radius: 18px; box-shadow: 0 4px 32px #0002; margin-top: 18px;">
+      <a href="index.html#home" class="brand" aria-label="SEMHYS" style="display:flex;align-items:center;gap:10px;">
+  <img src="assets/img/logo.svg" alt="Logo SEMHYS: ingeniería sostenible, agua y energía" title="SEMHYS Ingeniería Sostenible" style="width:48px;height:48px;border-radius:50%;background:#fff;box-shadow:0 2px 8px #0003;object-fit:cover;" itemprop="logo"/>
+  <span class="brand-text" style="font-size:1.5em;font-weight:900;letter-spacing:1px;background:linear-gradient(90deg,#22d3ee,#2563eb 80%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;">SEMHYS</span>
+      </a>
+      <nav class="nav" id="mainNav" style="flex:1;display:flex;justify-content:center;align-items:center;">
+        <ul class="nav-list" style="display:flex;gap:2.2em;list-style:none;margin:0;padding:0;align-items:center;">
+          <li><a href="index.html" class="nav-link">Inicio</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="services.html" class="nav-link">Servicios</a></li>
+          <li><a href="blog.html" class="nav-link">Blog</a></li>
+          <li><a href="shop.html" class="nav-link">Tienda</a></li>
+          <li><a href="academy.html" class="nav-link">Academia</a></li>
+          <li><a href="contact.html" class="btn btn-primary" style="padding:10px 22px;font-size:1em;">Contacto</a></li>
+        </ul>
+      </nav>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:12px;">
+        <select id="langSelect" style="padding:0.3em 1em;border-radius:8px;font-size:1em;background:#18191a;color:#fff;border:1px solid #273246;box-shadow:0 2px 8px #0002;">
+          <option value="es">Español</option>
+          <option value="en">English</option>
+          <option value="pt">Português</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+        </select>
+        <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" style="display:none;background:none;border:0;cursor:pointer;padding:8px;">
+          <span style="display:block;width:28px;height:3px;background:#fff;margin:6px 0;border-radius:2px;"></span>
+          <span style="display:block;width:28px;height:3px;background:#fff;margin:6px 0;border-radius:2px;"></span>
+          <span style="display:block;width:28px;height:3px;background:#fff;margin:6px 0;border-radius:2px;"></span>
+        </button>
+      </div>
+    </div>
+    <style>
+      .nav-link {
+        position:relative;
+        color:#fff;
+        text-decoration:none;
+        font-weight:600;
+        font-size:1.08em;
+        padding:6px 0;
+        transition:color .2s;
+      }
+      .nav-link::after {
+        content:'';
+        display:block;
+        height:3px;
+        border-radius:2px;
+        width:0;
+        background:linear-gradient(90deg,#22d3ee,#2563eb 80%);
+        transition:width .3s;
+        margin-top:2px;
+      }
+      .nav-link:hover::after, .nav-link.active::after {
+        width:100%;
+      }
+      @media (max-width:900px) {
+        .nav-list { flex-direction:column;gap:1.2em;background:#18191a;position:absolute;top:70px;right:18px;padding:22px 28px;border-radius:16px;box-shadow:0 8px 32px #0006;display:none;z-index:99; }
+        .nav-list.open { display:flex; }
+        .nav-toggle { display:block!important; }
+        .site-header .container { flex-direction:row; }
+      }
+    </style>
+    <script>
+      document.addEventListener('DOMContentLoaded',()=>{
+        const navToggle = document.getElementById('navToggle');
+        const navList = document.querySelector('.nav-list');
+        navToggle && navToggle.addEventListener('click',()=>{
+          navList.classList.toggle('open');
+        });
+        // Cerrar menú al hacer click en un enlace (móvil)
+        navList && navList.querySelectorAll('a').forEach(a=>{
+          a.addEventListener('click',()=>{
+            navList.classList.remove('open');
+          });
+        });
+      });
+    </script>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="container hero-grid">
+      <div class="hero_copy">
+          <h1 id="hero_title">Soluciones de Ingeniería Sostenible</h1>
+          <p id="hero_desc">Diseño, automatización y ejecución de proyectos hidráulicos, eléctricos y mecánicos con estándares internacionales y enfoque en eficiencia energética.</p>
+        <div class="hero_cta">
+            <a id="btn_services" href="#services" class="btn btn-primary">Ver servicios</a>
+            <a id="btn_quote" href="contact.html" class="btn btn-ghost">Solicitar cotización</a>
+        </div>
+        <div class="hero_badges">
+          <span>ISO 9001</span>
+          <span>Estándares IEC</span>
+          <span>QA/QC</span>
+        </div>
+      </div>
+
+      <div class="mockup-card" aria-hidden="true">
+        <div class="mockup-card__body">
+          <div class="stats">
+            <div><strong>18%</strong> ahorro energético</div>
+            <div><strong>12</strong> redes SCADA</div>
+            <div><strong>+30</strong> EPC entregados</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Servicios -->
+  <section id="services" class="section">
+    <div class="container section__head">
+      <h2 id="services_title">Nuestros servicios</h2>
+      <p id="services_desc">Ingeniería • Hidráulica • Eléctrica • Automatización • Consultoría • EPC • Mantenimiento</p>
+    </div>
+
+    <div class="container grid-3">
+      <article class="card">
+        <h3>Hidráulica</h3>
+        <p>Modelación, bombeo, tratamiento de agua y redes.</p>
+      </article>
+      <article class="card">
+        <h3>Eléctrica</h3>
+        <p>BT/MT, tableros, protecciones, IEC, selectividad y eficiencia.</p>
+      </article>
+      <article class="card">
+        <h3>Automatización</h3>
+        <p>SCADA, PLC, IIoT, telemetría, control y analítica.</p>
+      </article>
+      <article class="card">
+        <h3>Consultoría</h3>
+        <p>Normativas, auditorías, due diligence y comisionamiento.</p>
+      </article>
+      <article class="card">
+        <h3>Proyectos EPC</h3>
+        <p>Llave en mano con QA/QC y gestión integral.</p>
+      </article>
+      <article class="card">
+        <h3>Mantenimiento</h3>
+        <p>Planes preventivos y correctivos con KPIs claros.</p>
+      </article>
+    </div>
+
+    <div class="container cta">
+      <div class="cta__box">
+        <h3>¿Tienes un reto técnico?</h3>
+        <p>Nuestro equipo lo evalúa sin costo y te propone una ruta técnica y financiera.</p>
+        <a href="contact.html" class="btn">Hablar con ingeniería</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Casos -->
+  <section class="section dark">
+    <div class="container section__head">
+      <h2 id="cases_title">Casos recientes</h2>
+      <p id="cases_desc">Resultados medibles con impacto ambiental positivo.</p>
+    </div>
+
+    <div class="container grid-3">
+      <article class="card">
+        <h3>Planta de bombeo</h3>
+        <p>Optimización del consumo energético en 18%.</p>
+      </article>
+      <article class="card">
+        <h3>SCADA municipal</h3>
+        <p>Telemetría en 12 estaciones y alarmas tiempo real.</p>
+      </article>
+      <article class="card">
+        <h3>PTAR compacta</h3>
+        <p>Mejora DBO &lt; 10 mg/L cumpliendo normativa.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer_grid">
+      <div>
+        <div class="brand brand--footer">
+          <span class="brand-logo" aria-hidden="true">◉</span>
+          <span class="brand-text">SEMHYS</span>
+        </div>
+        <p class="muted">© <span id="year"></span> SEMHYS · Todos los derechos reservados</p>
+        <script src="/assets/js/main.js" defer></script>
+      </div>
+      <div>
+        <a href="privacy.html">Privacidad</a>
+        <a href="terms.html">Términos</a>
+        <a href="contact.html">Contacto</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Chat -->
+  <button class="chat-bubble" id="chatBubble" aria-label="Abrir chat">💬</button>
+  <section class="chat-panel" id="chatPanel" aria-hidden="true">
+    <header class="chat_head">
+      <strong>Asistente SEMHYS</strong>
+      <button class="chat_close" id="chatClose" aria-label="Cerrar">×</button>
+    </header>
+    <div class="chat_body" id="chatBody">
+      <div class="msg msg--bot">Hola 👋 Soy el asistente de SEMHYS. Cuéntame tu necesidad técnica.</div>
+    </div>
+    <form class="chat_input" id="chatForm">
+      <input id="chatText" type="text" placeholder="Escribe tu mensaje…" required />
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!doctype html><html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tienda | SEMHYS</title><link rel="stylesheet" href="/assets/css/styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<style>
+  .nav-links a { margin-right: 1.5em; font-size: 1.1em; letter-spacing: 0.02em; }
+  .nav-links a:last-child { margin-right: 0; }
+body { background: #101114; color: #f5f6fa; font-family: 'Inter', sans-serif; }
+.section__head h2, h2 { font-size: 2em; font-weight: 700; margin-bottom: 0.2em; }
+.section__head p, .sub { color: #00bcd4; font-size: 1.1em; }
+.card { background: #18191a; border-radius: 1em; box-shadow: 0 2px 12px #0002; padding: 1.5em; margin: 1em 0; transition: transform 0.2s, box-shadow 0.2s; }
+.card:hover { transform: translateY(-6px) scale(1.03); box-shadow: 0 8px 32px #00bcd4aa; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2em; }
+.footer { background: #101114; color: #aaa; padding: 2em 0 1em; }
+.footer a { color: #00bcd4; margin-right: 1em; text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+@media (max-width: 900px) { .grid-3 { grid-template-columns: 1fr; } }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.section').forEach(el=>{
+    el.classList.add('animate__animated','animate__fadeInUp');
+  });
+});
+</script>
+</head><body>
+  <header class="site-header">
+    <div class="container header-grid">
+      <a href="index.html#home" class="brand" aria-label="SEMHYS">
+        <span class="brand-logo" aria-hidden="true">◉</span>
+        <span class="brand-text">SEMHYS</span>
+      </a>
+      <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav">
+        <div class="nav-links">
+          <a href="index.html">Inicio</a>
+          <a href="about.html">About</a>
+          <a href="services.html">Servicios</a>
+          <a href="blog.html">Blog</a>
+          <a href="shop.html">Tienda</a>
+          <a href="academy.html">Academia</a>
+          <a href="contact.html" class="btn">Contacto</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+<section class="section"><div class="container">
+<h2>Tienda</h2><p class="sub">Instrumentación, válvulas, bombas y kits de telemetría.</p>
+<div class="grid-3">
+  <div class="card"><h3>Kit de Telemetría</h3><p>PLC + RTU + SIM IoT.</p><button class="btn">Consultar</button></div>
+  <div class="card"><h3>Bomba Centrífuga</h3><p>Alta eficiencia.</p><button class="btn">Consultar</button></div>
+  <div class="card"><h3>Medidor Electromagnético</h3><p>DN50–DN300</p><button class="btn">Consultar</button></div>
+</div>
+</div></section>
+
+<footer class="footer"><div class="container">© <span id="year"></span> SEMHYS</div></footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="/assets/js/chat.js" defer></script>
+</body></html>
