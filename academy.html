@@ -1,0 +1,66 @@
+<!doctype html><html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Academia | SEMHYS</title>
+<link rel="stylesheet" href="/assets/css/styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<style>
+body { background: #101114; color: #f5f6fa; font-family: 'Inter', sans-serif; }
+.section__head h2, h2 { font-size: 2em; font-weight: 700; margin-bottom: 0.2em; }
+.section__head p, .sub { color: #00bcd4; font-size: 1.1em; }
+.card { background: #18191a; border-radius: 1em; box-shadow: 0 2px 12px #0002; padding: 1.5em; margin: 1em 0; transition: transform 0.2s, box-shadow 0.2s; }
+.card:hover { transform: translateY(-6px) scale(1.03); box-shadow: 0 8px 32px #00bcd4aa; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2em; }
+.footer { background: #101114; color: #aaa; padding: 2em 0 1em; }
+.footer a { color: #00bcd4; margin-right: 1.5em; text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
+.nav-links a { margin-right: 1.5em; font-size: 1.1em; letter-spacing: 0.02em; }
+.nav-links a:last-child { margin-right: 0; }
+@media (max-width: 900px) { .grid-2 { grid-template-columns: 1fr; } }
+</style>
+</head><body>
+  <header class="site-header">
+    <div class="container header-grid">
+      <a href="index.html#home" class="brand" aria-label="SEMHYS">
+  <img src="assets/img/logo.svg" alt="Logo SEMHYS" style="width:48px;height:48px;border-radius:50%;background:#fff;box-shadow:0 2px 8px #0003;object-fit:cover;" />
+        <span class="brand-text">SEMHYS</span>
+      </a>
+      <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav">
+        <div class="nav-links">
+          <a href="index.html">Inicio</a>
+          <a href="about.html">About</a>
+          <a href="services.html">Servicios</a>
+          <a href="blog.html">Blog</a>
+          <a href="shop.html">Tienda</a>
+          <a href="academy.html">Academia</a>
+          <a href="contact.html" class="btn">Contacto</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+<section class="section"><div class="container">
+<h2>Academia SEMHYS</h2><p class="sub">Capacitación en hidráulica, SCADA y eficiencia energética.</p>
+<div class="grid-2">
+  <div class="card"><h3>Hidráulica Aplicada</h3><p>Diseño y operación de redes.</p><button class="btn" onclick="startAdvisory('Hidráulica Aplicada')">Asesor IA</button></div>
+  <div class="card"><h3>SCADA & Telemetría</h3><p>Arquitecturas y ciberseguridad.</p><button class="btn" onclick="startAdvisory('SCADA & Telemetría')">Asesor IA</button></div>
+</div>
+<p class="note">Primero conversas con el **Asistente SEMHYS** para perfilar tu nivel y objetivo. Luego te inscribes.</p>
+</div></section>
+
+<footer class="footer"><div class="container">© <span id="year"></span> SEMHYS</div></footer>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="/assets/js/chat.js" defer></script>
+<script>
+function startAdvisory(course){
+  // Enviar evento al webhook de n8n para que el asistente use RAG y recomiende ruta
+  fetch('https://semhys.app.n8n.cloud/webhook/chat_semhys', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ type:'academy_interest', course, page:location.pathname })
+  }).catch(()=>{});
+  // Abrir chat
+  const fab = document.querySelector('.chat-fab'); if(fab) fab.click();
+}
+</body></html>
