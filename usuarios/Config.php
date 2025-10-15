@@ -5,11 +5,13 @@
 
 declare(strict_types=1);
 
-// --- MySQL (según tus datos) ---
-const DB_HOST = 'localhost';
-const DB_NAME = 'u726518692_semhys_data';
-const DB_USER = 'u726518692_semhys_user';
-const DB_PASS = 'Q@semhys2025';
+// Prefer a config placed one level above the webroot. Fall back to includes/config.php
+$external = realpath(__DIR__ . '/../config.php');
+if ($external && is_readable($external)) {
+    require_once $external;
+} else {
+    require_once __DIR__ . '/../includes/config.php';
+}
 
 // --- Token de API (cámbialo cuando quieras) ---
 const API_TOKEN = 'semhys-2025-indexador';
@@ -24,14 +26,7 @@ if ($DOCS_ROOT === false || !is_dir($DOCS_ROOT)) {
 
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
-function db(): mysqli {
-    static $conn = null;
-    if ($conn === null) {
-        $conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-        $conn->set_charset('utf8mb4');
-    }
-    return $conn;
-}
+// db() is provided by the central config (or includes/config.php.example in dev).
 
 function now_mysql(): string {
     return date('Y-m-d H:i:s');

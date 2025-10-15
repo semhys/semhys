@@ -6,3 +6,4 @@
 *.zip
 includes/config.php
 .diag_token
+config.php

@@ -17,22 +17,7 @@ function logit(string $msg): void {
   @file_put_contents(__DIR__ . '/contact.log', '['.date('Y-m-d H:i:s')."] $msg\n", FILE_APPEND);
 }
 
-/* ====== BD (tus datos) ====== */
-const DB_HOST = 'localhost';
-const DB_NAME = 'u726518692_semhys_data';
-const DB_USER = 'u726518692_semhys_user';
-const DB_PASS = 'Q@semhys2025';
 
-/* ====== SMTP (Hostinger) ======
-   Si tu hosting es Hostinger, su SMTP suele ser smtp.hostinger.com
-   Puerto 587 TLS. Usuario y pass = tu buzón.
-================================= */
-const SMTP_HOST   = 'smtp.hostinger.com';
-const SMTP_PORT   = 587;
-const SMTP_USER   = 'contact@semhys.com';
-const SMTP_PASS   = 'Q@bola6386';
-const FROM_EMAIL  = 'contact@semhys.com';
-const FROM_NAME   = 'SEMHYS';
 
 if($_SERVER['REQUEST_METHOD']!=='POST'){
   respond(['ok'=>false,'error'=>'Método no permitido'],405);
