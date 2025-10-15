@@ -7,7 +7,22 @@ require_once __DIR__ . '/phpmailer/src/PHPMailer.php';
 require_once __DIR__ . '/phpmailer/src/SMTP.php';
 require_once __DIR__ . '/phpmailer/src/Exception.php';
 
-define('DIAG_TOKEN', 'b9f7a1d2c4e6f8a0b3c5d7e9f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a');
+// Load DIAG_TOKEN from a file outside the webroot for safety.
+$token_path = realpath(__DIR__ . '/../.diag_token');
+if ($token_path && is_readable($token_path)) {
+    $token_value = trim(file_get_contents($token_path));
+    if ($token_value === '') {
+        http_response_code(500);
+        echo json_encode(['ok' => false, 'error' => 'Token file is empty.']);
+        exit;
+    }
+    define('DIAG_TOKEN', $token_value);
+} else {
+    // If token file not found, do not expose diagnostics.
+    http_response_code(500);
+    echo json_encode(['ok' => false, 'error' => 'Diagnostic token not configured. Place a .diag_token file outside public_html with the token.']);
+    exit;
+}
 
 header('Content-Type: application/json');
 $out = ['ok' => false, 'error' => null, 'action' => null];
