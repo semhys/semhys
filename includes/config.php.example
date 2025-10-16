@@ -1,0 +1,26 @@
+<?php
+// includes/config.php.example
+// Copia este archivo a `includes/config.php` y completa las credenciales.
+
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'tu_base_de_datos');
+define('DB_USER', 'tu_usuario_db');
+define('DB_PASS', 'tu_contraseña_db');
+
+define('SMTP_HOST', 'smtp.tudominio.com');
+define('SMTP_PORT', 587);
+define('SMTP_USER', 'smtp_user');
+define('SMTP_PASS', 'smtp_pass');
+define('FROM_EMAIL', 'no-reply@tudominio.com');
+define('FROM_NAME', 'Tu Nombre');
+
+function db() {
+    $mysqli = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+    if ($mysqli->connect_errno) {
+        throw new Exception('DB connect error: ' . $mysqli->connect_error);
+    }
+    $mysqli->set_charset('utf8mb4');
+    return $mysqli;
+}
+
+?>
