@@ -4,8 +4,21 @@
 // This is a duplicate of includes/webhook_proxy.php but located in a public API path so it
 // can be reached by external clients.
 
-$secret = getenv('WEBHOOK_SECRET') ?: 'MI_TOKEN_LOCAL_DE_PRUEBA';
+// Load secret from file outside webroot if present, then from environment, then fallback
 $n8nUrl = 'https://semhys.app.n8n.cloud/webhook/semhys-contact';
+$secret = null;
+$secretFile = __DIR__ . '/../webhook_secret.php';
+if (file_exists($secretFile)) {
+    // file should define $WEBHOOK_SECRET (keep this file outside public_html)
+    include_once $secretFile;
+    if (!empty($WEBHOOK_SECRET)) {
+        $secret = $WEBHOOK_SECRET;
+    }
+}
+if ($secret === null) {
+    // try environment variable
+    $secret = getenv('WEBHOOK_SECRET') ?: 'MI_TOKEN_LOCAL_DE_PRUEBA';
+}
 
 // Allow only POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
