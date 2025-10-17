@@ -1,0 +1,65 @@
+name: Build and Deploy Frontend
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'frontend/**'
+      - '.github/workflows/deploy_frontend.yml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        working-directory: ./frontend
+        run: npm ci
+
+      - name: Build
+        working-directory: ./frontend
+        run: npm run build --if-present
+
+      - name: Upload artifact (build)
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-dist
+          path: frontend/dist/
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    steps:
+      - name: Download build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: frontend-dist
+
+      - name: Deploy via SFTP (recommended)
+        if: ${{ secrets.SFTP_HOST }}
+        uses: appleboy/scp-action@v0.1.9
+        with:
+          host: ${{ secrets.SFTP_HOST }}
+          username: ${{ secrets.SFTP_USER }}
+          key: ${{ secrets.SFTP_PRIVATE_KEY }}
+          port: ${{ secrets.SFTP_PORT || '22' }}
+          source: "frontend-dist/**"
+          target: "${{ secrets.SFTP_TARGET_DIR || '/public_html' }}"
+
+      - name: Deploy via FTP (fallback)
+        if: ${{ secrets.FTP_HOST && !secrets.SFTP_HOST }}
+        uses: SamKirkland/FTP-Deploy-Action@4.4.0
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: frontend-dist/
+          server-dir: ${{ secrets.FTP_TARGET_DIR || '/' }}

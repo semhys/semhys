@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+  --brand: #0f172a; /* slate-900 */
+  --semhys-primary: #0F9B79; /* deep teal */
+  --semhys-accent: #F36C13;  /* orange */
+  --semhys-emerald: #6DBE45;  /* leaf green */
+  --semhys-primary-700: #0b654e; /* darker primary for contrast */
+  --semhys-accent-600: #d85b10;
+}
+
+/* Design tokens */
+:root{
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --shadow-sm: 0 4px 12px rgba(15,23,42,0.06);
+  --shadow-md: 0 10px 30px rgba(15,23,42,0.12);
+}
+
+/* Button utility tokens */
+.btn { display:inline-flex; align-items:center; justify-content:center; gap:8px }
+.btn-primary { background:var(--semhys-primary-700); color:white; border-radius:var(--radius-sm); padding:10px 16px; box-shadow:var(--shadow-md) }
+.btn-ghost { background:transparent; border:1px solid #e6eef0; color:var(--brand-dark); padding:8px 14px; border-radius:var(--radius-sm) }
+
+.btn-accent { background:var(--semhys-accent); color:var(--brand-dark); border-radius:var(--radius-sm); padding:10px 16px; box-shadow:var(--shadow-sm); border:1px solid rgba(0,0,0,0.04) }
+.btn-accent:hover{ background:var(--semhys-accent-600) }
+
+
+body{background-color:#f8fafc}
+
+html,body,#root{height:100%}
+
+body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+
+h1,h2,h3{font-family:Merriweather, Georgia, serif}
+
+/* Mobile nav helpers */
+.mobile-nav-backdrop{position:fixed;inset:0;background:rgba(15,23,42,0.5);z-index:20}
+
+@keyframes mobileOpen {
+  from { transform: translateY(-8px); opacity: 0 }
+  to { transform: translateY(0); opacity: 1 }
+}
+.animate-mobile-open{ animation: mobileOpen 220ms ease-out }
+

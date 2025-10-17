@@ -7,3 +7,6 @@
 includes/config.php
 .diag_token
 config.php
+# Ignore webhook proxy log and archives
+includes/webhook_proxy.log
+includes/log_archive/
