@@ -20,6 +20,52 @@ if ($secret === null) {
     $secret = getenv('WEBHOOK_SECRET') ?: 'MI_TOKEN_LOCAL_DE_PRUEBA';
 }
 
+// HMAC verification settings
+// If set to true, the proxy will reject requests that don't include a valid X-Signature header
+$requireSignature = false; // set to true to force HMAC check in production
+
+// Helper: read incoming headers (works on most servers)
+$incomingHeaders = function_exists('getallheaders') ? getallheaders() : [];
+// Normalize header keys to lower-case for easy lookup
+$normalizedHeaders = [];
+foreach ($incomingHeaders as $k => $v) {
+    $normalizedHeaders[strtolower($k)] = $v;
+}
+
+// Check for several common signature header names
+$signatureHeader = '';
+foreach (['x-signature','x-signature-256','x-hub-signature-256','x-hub-signature'] as $h) {
+    if (isset($normalizedHeaders[$h])) { $signatureHeader = $normalizedHeaders[$h]; break; }
+}
+
+// If a signature was provided, validate it (expects 'sha256=<hex>' or raw hex)
+$signatureValid = null; // null = not provided, true/false = validation result
+if (!empty($signatureHeader)) {
+    $received = $signatureHeader;
+    if (strpos($received, 'sha256=') === 0) {
+        $received = substr($received, 7);
+    }
+    $computed = hash_hmac('sha256', $body, $secret);
+    // use hash_equals to mitigate timing attacks
+    $signatureValid = hash_equals($computed, $received);
+    if (!$signatureValid) {
+        http_response_code(401);
+        header('Content-Type: application/json');
+        echo json_encode(['error' => 'invalid_signature']);
+        // log attempt
+        proxy_log(['ts'=>gmdate('c'),'event'=>'invalid_signature','client_ip'=>$_SERVER['REMOTE_ADDR'] ?? 'unknown']);
+        exit;
+    }
+}
+
+if ($requireSignature && $signatureValid !== true) {
+    // Signature required but not provided or invalid
+    http_response_code(401);
+    header('Content-Type: application/json');
+    echo json_encode(['error' => 'signature_required']);
+    exit;
+}
+
 // Allow only POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405);
